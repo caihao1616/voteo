@@ -24,7 +24,6 @@ class Board extends React.Component{
 
   onChange(state){
     this.setState(state);
-    console.log(state)
   }
 
   render(){

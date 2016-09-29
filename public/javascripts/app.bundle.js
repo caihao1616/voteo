@@ -43145,7 +43145,6 @@
 	    key: 'onChange',
 	    value: function onChange(state) {
 	      this.setState(state);
-	      console.log(state);
 	    }
 	  }, {
 	    key: 'render',
@@ -43465,6 +43464,11 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'panel' },
+	        _react2.default.createElement(
+	          'h1',
+	          { className: 'title' },
+	          'VOTEO'
+	        ),
 	        _react2.default.createElement(_timer2.default, { countdown: this.props.countdown }),
 	        _react2.default.createElement(_controls2.default, { started: this.props.started }),
 	        _react2.default.createElement(_stats2.default, null)
@@ -43624,22 +43628,14 @@
 	        'div',
 	        { className: 'controls' },
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'panel_button_container' },
-	          _react2.default.createElement(
-	            'button',
-	            { type: 'button', className: 'panel_btn', onClick: this.handleQuitVote },
-	            'Quit Vote'
-	          )
+	          'button',
+	          { type: 'button', className: 'controls_btn controls_btn_green', onClick: this.handleRestart },
+	          this.props.started ? 'Restart' : 'Start'
 	        ),
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'panel_button_container' },
-	          _react2.default.createElement(
-	            'button',
-	            { type: 'button', className: 'panel_btn', onClick: this.handleRestart },
-	            this.props.started ? 'Restart' : 'Start'
-	          )
+	          'button',
+	          { type: 'button', className: 'controls_btn controls_btn_blue', onClick: this.handleQuitVote },
+	          'NO ACTION'
 	        )
 	      );
 	    }
@@ -43746,7 +43742,13 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'timer' },
-	        this.props.countdown
+	        _react2.default.createElement(
+	          'span',
+	          { className: 'timer_sec' },
+	          this.props.countdown
+	        ),
+	        's',
+	        _react2.default.createElement('div', { className: 'timer_underline' })
 	      );
 	    }
 	  }]);

@@ -13,12 +13,8 @@ class Controls extends React.Component{
   render(){
     return (
       <div className='controls'>
-        <div className='panel_button_container'>
-          <button type="button" className="panel_btn" onClick={this.handleQuitVote}>Quit Vote</button>
-        </div>
-        <div className='panel_button_container'>
-          <button type="button" className="panel_btn" onClick={this.handleRestart}>{this.props.started ? 'Restart' : 'Start'}</button>
-        </div>
+        <button type="button" className="controls_btn controls_btn_green" onClick={this.handleRestart}>{this.props.started ? 'Restart' : 'Start'}</button>
+        <button type="button" className="controls_btn controls_btn_blue" onClick={this.handleQuitVote}>NO ACTION</button>
       </div>
     )
   }
