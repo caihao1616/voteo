@@ -90,14 +90,26 @@ body {
   @include ellipse;
 }
 
-.panel{
+.panel {
+  width: 30%;
+  float: left;
   margin-bottom: 50px;
 }
+
+.panel_button_container {
+  padding: 10px;
+}
+
 .panel_btn{
   padding: 5px;
   font-size: 16px;
   margin-right: 15px;
   border-radius: 3px;
+}
+
+.main_panel {
+  width: 70%;
+  float: left;
 }
 
 .cards{
