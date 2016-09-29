@@ -1,0 +1,135 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+.dialog {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 100; }
+  .dialog.hide {
+    display: none; }
+
+.dialog_box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 150px;
+  margin: -75px 0 0 -150px;
+  background-color: #fff;
+  border: 1px solid black;
+  padding: 10px; }
+
+.dialog_message {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 10px; }
+
+.dialog_input {
+  display: block;
+  font: 16px;
+  margin-bottom: 10px; }
+
+.users {
+  margin-bottom: 100px; }
+  .users:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.user {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  float: left;
+  max-width: 50px; }
+
+.user_card {
+  width: 50px;
+  height: 70px;
+  border: 1px solid black; }
+  .user_card.back {
+    background: black; }
+  .is_me .user_card {
+    background: none; }
+
+.user_name {
+  text-align: center;
+  padding: 5px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.panel {
+  margin-bottom: 50px; }
+
+.panel_btn {
+  padding: 5px;
+  font-size: 16px;
+  margin-right: 15px;
+  border-radius: 3px; }
+
+.cards {
+  position: relative;
+  max-width: 800px;
+  min-width: 400px;
+  margin-right: 100px; }
+  .cards:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.card {
+  position: absolute;
+  top: 0px;
+  width: 100px;
+  height: 140px;
+  text-align: left;
+  padding: 5px;
+  float: left;
+  border: 1px solid black;
+  cursor: pointer;
+  background-color: #fff;
+  -moz-transition: top 0.2s ease, left 0.5s ease;
+  -o-transition: top 0.2s ease, left 0.5s ease;
+  -webkit-transition: top 0.2s ease, left 0.5s ease;
+  transition: top 0.2s ease, left 0.5s ease; }
+  .card:nth-child(1) {
+    left: 0%;
+    z-index: 1; }
+  .card:nth-child(2) {
+    left: 11.11111%;
+    z-index: 2; }
+  .card:nth-child(3) {
+    left: 22.22222%;
+    z-index: 3; }
+  .card:nth-child(4) {
+    left: 33.33333%;
+    z-index: 4; }
+  .card:nth-child(5) {
+    left: 44.44444%;
+    z-index: 5; }
+  .card:nth-child(6) {
+    left: 55.55556%;
+    z-index: 6; }
+  .card:nth-child(7) {
+    left: 66.66667%;
+    z-index: 7; }
+  .card:nth-child(8) {
+    left: 77.77778%;
+    z-index: 8; }
+  .card:nth-child(9) {
+    left: 88.88889%;
+    z-index: 9; }
+  .card:hover {
+    top: -20px; }
+
+.admin_user {
+  margin-bottom: 10px;
+  font-size: 16px; }
+
+.admin_kick_btn {
+  margin-left: 10px; }

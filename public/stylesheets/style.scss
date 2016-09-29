@@ -1,0 +1,141 @@
+$cards_number: 9;
+$distance_between_cards: 100% / $cards_number;
+$card_width: 100px;
+$card_height: 140px;
+$board_card_width: $card_width * 0.5;
+$board_card_height: $card_height * 0.5;
+
+@mixin clearfix{
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+@mixin ellipse{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@mixin transition($transition...){
+  -moz-transition:    $transition;
+  -o-transition:      $transition;
+  -webkit-transition: $transition;
+  transition:         $transition;
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.dialog{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 100;
+  &.hide{
+    display: none;
+  }
+}
+.dialog_box{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 150px;
+  margin: -75px 0 0 -150px;
+  background-color: #fff;
+  border: 1px solid black;
+  padding: 10px;
+}
+.dialog_message{
+  display: block;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.dialog_input{
+  display: block;
+  font: 16px;
+  margin-bottom: 10px;
+}
+
+.users{
+  margin-bottom: 100px;
+  @include clearfix;
+}
+.user{
+  margin-right: 20px;
+  margin-bottom: 20px;
+  float: left;
+  max-width: $board_card_width;
+}
+.user_card{
+  width: $board_card_width;
+  height: $board_card_height;
+  border: 1px solid black;
+  &.back{
+    background: black;
+  }
+  .is_me &{
+    background: none;
+  }
+}
+.user_name{
+  text-align: center;
+  padding: 5px 0;
+  @include ellipse;
+}
+
+.panel{
+  margin-bottom: 50px;
+}
+.panel_btn{
+  padding: 5px;
+  font-size: 16px;
+  margin-right: 15px;
+  border-radius: 3px;
+}
+
+.cards{
+  position: relative;
+  max-width: 800px;
+  min-width: 400px;
+  margin-right: $card_width;
+  @include clearfix;
+}
+.card{
+  position: absolute;
+  top: 0px;
+  width: $card_width;
+  height: $card_height;
+  text-align: left;
+  padding: 5px;
+  float: left;
+  border: 1px solid black;
+  cursor: pointer;
+  background-color: #fff;
+  @for $i from 0 through 8 {
+    &:nth-child(#{$i+1}){
+      left: $distance_between_cards * $i;
+      z-index: $i + 1;
+    }
+  }
+  &:hover{
+    top: -20px;
+  }
+  @include transition(top 0.2s ease, left 0.5s ease);
+}
+
+// -------------------
+// ----- Admin -------
+.admin_user{
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+.admin_kick_btn{
+  margin-left: 10px;
+}
