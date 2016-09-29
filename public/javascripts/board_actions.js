@@ -9,10 +9,6 @@ import Constants from './constants';class BoardActions{
     return point;
   }
 
-  disclose(){
-    return true;
-  }
-
   restart(){
     return true;
   }

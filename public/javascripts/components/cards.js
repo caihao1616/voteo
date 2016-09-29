@@ -16,8 +16,13 @@ class Cards extends React.Component{
       <div key={point} className='card' onClick={() => this.handleVote(point)}>{point}</div>
     );
 
+    let card_classes = ['cards']
+    if(!this.props.started){
+      card_classes.push('hidden')
+    }
+
     return (
-      <div className='cards'>{cards}</div>
+      <div className={card_classes.join(' ')}>{cards}</div>
     );
   }
 }

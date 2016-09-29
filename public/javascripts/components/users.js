@@ -6,7 +6,7 @@ class User extends React.Component{
     if(this.props.point !== null)
       if(this.props.point === -1)
         card_classes.push('quitted');
-      else if(this.props.done || this.props.is_me)
+      else if(this.props.all_voted || this.props.is_me)
         card_classes.push('p' + this.props.point);
       else
         card_classes.push('back');
@@ -30,7 +30,7 @@ class Users extends React.Component{
           name={key}
           point={this.props.users[key].point}
           is_me={key === this.props.user_name}
-          done={this.props.done}
+          all_voted={this.props.all_voted}
         />
       )
     }

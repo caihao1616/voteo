@@ -24,19 +24,13 @@ function connection(io){
       io.emit('update', data)
     })
 
-    socket.on('done', function(){
-      console.log('vote done')
-      data.done = true
-      io.emit('update', data)
-    })
-
     socket.on('restart', function(){
-      console.log('restart')
+      console.log('start/restart')
 
+      data.started = true
       for(var key in data.users){
         data.users[key].point = null
       }
-      data.done = false
       io.emit('update', data)
     })
 
@@ -47,6 +41,9 @@ function connection(io){
         return
 
       delete data.users[socket.user_name]
+      if(Object.keys(data.users).length === 0){
+        data.started = false;
+      }
       io.emit('update', data)
     })
 

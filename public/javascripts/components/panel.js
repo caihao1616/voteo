@@ -2,10 +2,6 @@ import React from 'react';
 import boardActions from '../board_actions';
 
 class Panel extends React.Component{
-  handleDone(e){
-    boardActions.disclose();
-  }
-
   handleRestart(e){
     boardActions.restart();
   }
@@ -18,8 +14,7 @@ class Panel extends React.Component{
     return (
       <div className='panel'>
         <button type="button" className="panel_btn" onClick={this.handleQuitVote}>Quit Vote</button>
-        <button type="button" className="panel_btn" onClick={this.handleRestart}>Restart</button>
-        <button type="button" className="panel_btn" disabled={!this.props.all_voted} onClick={this.handleDone}>Done</button>
+        <button type="button" className="panel_btn" onClick={this.handleRestart}>{this.props.started ? 'Restart' : 'Start'}</button>
       </div>
     )
   }

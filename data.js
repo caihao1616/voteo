@@ -1,6 +1,6 @@
 var data = {
   users: {},
-  done: false
+  started: false
 }
 
 module.exports = data;

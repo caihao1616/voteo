@@ -8,13 +8,12 @@ var socket = io();
 class BoardStore{
   constructor(){
     this.users = {};
-    this.done = false;
+    this.started = false;
     this.dialog_message = null;
 
     this.bindListeners({
       handleRegisterUser: boardActions.REGISTER_USER,
       handleVote: boardActions.VOTE,
-      handleDisclose: boardActions.DISCLOSE,
       handleRestart: boardActions.RESTART,
       handleSubmitName: boardActions.SUBMIT_NAME
     });
@@ -33,11 +32,6 @@ class BoardStore{
     return false;
   }
 
-  handleDisclose(){
-    socket.emit('done');
-    return false;
-  }
-
   handleRestart(){
     socket.emit('restart');
     return false;
@@ -53,7 +47,7 @@ class BoardStore{
     return {
       users: state.users,
       user_name: state.user_name,
-      done: state.done,
+      started: state.started,
       dialog_message: state.dialog_message
     }
   }
