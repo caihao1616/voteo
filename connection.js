@@ -1,5 +1,6 @@
 var data = require('./data')
 var socket_mapping = {}
+var counter
 
 function connection(io){
   io.on('connection', function(socket){
@@ -22,6 +23,17 @@ function connection(io){
       console.log('a user voted ' + point)
       data.users[socket.user_name] = {point: point}
       io.emit('update', data)
+
+      var all_voted = true
+      for(var user in data.users){
+        if(data.users[user].point === null){
+          all_voted = false
+          break
+        }
+      }
+      if(all_voted){
+        clearInterval(counter)
+      }
     })
 
     socket.on('restart', function(){
@@ -32,6 +44,21 @@ function connection(io){
         data.users[key].point = null
       }
       io.emit('update', data)
+
+      if(counter !== undefined){clearInterval(counter)}
+      data.countdown = 60;
+      counter = setInterval(function(){
+        data.countdown = data.countdown - 1
+        if(data.countdown === 0){
+          for(var user in data.users){
+            if(data.users[user].point === null){
+              data.users[user].point = -1
+            }
+          }
+          clearInterval(counter);
+        }
+        io.emit('update', data)
+      }, 1000)
     })
 
     socket.on('disconnect', function(){

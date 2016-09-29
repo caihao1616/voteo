@@ -42151,6 +42151,7 @@
 	    this.users = {};
 	    this.started = false;
 	    this.dialog_message = null;
+	    this.count_down = 60;
 
 	    this.bindListeners({
 	      handleRegisterUser: _board_actions2.default.REGISTER_USER,
@@ -42195,7 +42196,8 @@
 	        users: state.users,
 	        user_name: state.user_name,
 	        started: state.started,
-	        dialog_message: state.dialog_message
+	        dialog_message: state.dialog_message,
+	        countdown: state.countdown
 	      };
 	    }
 
@@ -43160,9 +43162,13 @@
 	        'div',
 	        { className: 'board' },
 	        _react2.default.createElement(_dialog2.default, { message: this.state.dialog_message }),
-	        _react2.default.createElement(_users2.default, { users: this.state.users, user_name: this.state.user_name, all_voted: all_voted }),
-	        _react2.default.createElement(_panel2.default, { all_voted: all_voted, started: this.state.started }),
-	        _react2.default.createElement(_cards2.default, { voted: voted_point, started: this.state.started })
+	        _react2.default.createElement(_panel2.default, { all_voted: all_voted, started: this.state.started, countdown: this.state.countdown }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'main_panel' },
+	          _react2.default.createElement(_users2.default, { users: this.state.users, user_name: this.state.user_name, all_voted: all_voted }),
+	          _react2.default.createElement(_cards2.default, { voted: voted_point, started: this.state.started })
+	        )
 	      );
 	    }
 	  }]);
@@ -43431,9 +43437,17 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _board_actions = __webpack_require__(310);
+	var _controls = __webpack_require__(338);
 
-	var _board_actions2 = _interopRequireDefault(_board_actions);
+	var _controls2 = _interopRequireDefault(_controls);
+
+	var _stats = __webpack_require__(339);
+
+	var _stats2 = _interopRequireDefault(_stats);
+
+	var _timer = __webpack_require__(340);
+
+	var _timer2 = _interopRequireDefault(_timer);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43446,31 +43460,14 @@
 	  }
 
 	  (0, _createClass3.default)(Panel, [{
-	    key: 'handleRestart',
-	    value: function handleRestart(e) {
-	      _board_actions2.default.restart();
-	    }
-	  }, {
-	    key: 'handleQuitVote',
-	    value: function handleQuitVote(e) {
-	      _board_actions2.default.vote(-1);
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'panel' },
-	        _react2.default.createElement(
-	          'button',
-	          { type: 'button', className: 'panel_btn', onClick: this.handleQuitVote },
-	          'Quit Vote'
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { type: 'button', className: 'panel_btn', onClick: this.handleRestart },
-	          this.props.started ? 'Restart' : 'Start'
-	        )
+	        _react2.default.createElement(_timer2.default, { countdown: this.props.countdown }),
+	        _react2.default.createElement(_controls2.default, { started: this.props.started }),
+	        _react2.default.createElement(_stats2.default, null)
 	      );
 	    }
 	  }]);
@@ -43565,6 +43562,198 @@
 	}(_react2.default.Component);
 
 	module.exports = Cards;
+
+/***/ },
+/* 338 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _getPrototypeOf = __webpack_require__(174);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(200);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(201);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(205);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(252);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _board_actions = __webpack_require__(310);
+
+	var _board_actions2 = _interopRequireDefault(_board_actions);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Controls = function (_React$Component) {
+	  (0, _inherits3.default)(Controls, _React$Component);
+
+	  function Controls() {
+	    (0, _classCallCheck3.default)(this, Controls);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Controls).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Controls, [{
+	    key: 'handleRestart',
+	    value: function handleRestart(e) {
+	      _board_actions2.default.restart();
+	    }
+	  }, {
+	    key: 'handleQuitVote',
+	    value: function handleQuitVote(e) {
+	      _board_actions2.default.vote(-1);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'controls' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'panel_button_container' },
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'button', className: 'panel_btn', onClick: this.handleQuitVote },
+	            'Quit Vote'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'panel_button_container' },
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'button', className: 'panel_btn', onClick: this.handleRestart },
+	            this.props.started ? 'Restart' : 'Start'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return Controls;
+	}(_react2.default.Component);
+
+	module.exports = Controls;
+
+/***/ },
+/* 339 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _getPrototypeOf = __webpack_require__(174);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(200);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(201);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(205);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(252);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Stats = function (_React$Component) {
+	  (0, _inherits3.default)(Stats, _React$Component);
+
+	  function Stats() {
+	    (0, _classCallCheck3.default)(this, Stats);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Stats).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Stats, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement('div', { className: 'stats' });
+	    }
+	  }]);
+	  return Stats;
+	}(_react2.default.Component);
+
+	module.exports = Stats;
+
+/***/ },
+/* 340 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _getPrototypeOf = __webpack_require__(174);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(200);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(201);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(205);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(252);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Timer = function (_React$Component) {
+	  (0, _inherits3.default)(Timer, _React$Component);
+
+	  function Timer() {
+	    (0, _classCallCheck3.default)(this, Timer);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Timer).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Timer, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'timer' },
+	        this.props.countdown
+	      );
+	    }
+	  }]);
+	  return Timer;
+	}(_react2.default.Component);
+
+	module.exports = Timer;
 
 /***/ }
 /******/ ]);

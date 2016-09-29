@@ -10,6 +10,7 @@ class BoardStore{
     this.users = {};
     this.started = false;
     this.dialog_message = null;
+    this.count_down = 60;
 
     this.bindListeners({
       handleRegisterUser: boardActions.REGISTER_USER,
@@ -48,7 +49,8 @@ class BoardStore{
       users: state.users,
       user_name: state.user_name,
       started: state.started,
-      dialog_message: state.dialog_message
+      dialog_message: state.dialog_message,
+      countdown: state.countdown
     }
   }
 
