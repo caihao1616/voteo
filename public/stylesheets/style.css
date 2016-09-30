@@ -1,6 +1,5 @@
 body {
-  padding: 50px;
-  font-family: "Open Sans"; }
+  font: 14px "Open Sans", Helvetica, Arial, sans-serif; }
 
 div {
   box-sizing: border-box; }
@@ -24,7 +23,7 @@ div {
   height: 150px;
   margin: -75px 0 0 -150px;
   background-color: #fff;
-  border: 1px solid black;
+  border: 1px solid #f8f8f8;
   padding: 10px; }
 
 .dialog_message {
@@ -51,9 +50,14 @@ div {
   max-width: 50px; }
 
 .user_card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
   width: 50px;
   height: 70px;
-  border: 1px solid black; }
+  border: 1px dashed #6f767f;
+  border-radius: 8px; }
   .user_card.back {
     background: black; }
   .is_me .user_card {
@@ -61,7 +65,9 @@ div {
 
 .user_name {
   text-align: center;
-  padding: 5px 0;
+  text-transform: uppercase;
+  color: #0067ff;
+  padding: 10px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }
@@ -69,13 +75,17 @@ div {
 .main_panel {
   width: 80%;
   float: left;
-  padding: 0 20px; }
+  padding: 20px;
+  background-color: #ebf5fe; }
 
 .panel {
   width: 20%;
   float: left;
   border-right: 1px solid #e3e3e5;
   padding: 0 20px; }
+
+.panel_title {
+  font-size: 30px; }
 
 .title {
   color: #40464d;
@@ -164,10 +174,12 @@ div {
   width: 100px;
   height: 140px;
   text-align: left;
-  padding: 5px;
+  padding-top: 5px;
+  padding-left: 5px;
   float: left;
   border: 1px solid black;
   cursor: pointer;
+  border-radius: 8px;
   background-color: #fff;
   -moz-transition: top 0.2s ease, left 0.5s ease;
   -o-transition: top 0.2s ease, left 0.5s ease;
