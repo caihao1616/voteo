@@ -6,6 +6,7 @@ $board_card_width: $card_width * 0.5;
 $board_card_height: $card_height * 0.5;
 $blue: #0067ff;
 $green: #33d872;
+$letter_spacing: 3px;
 
 @mixin clearfix{
   &:after {
@@ -28,7 +29,7 @@ $green: #33d872;
 
 body {
   padding: 50px;
-  font: 14px "Open Sans", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans";
 }
 
 div{
@@ -112,15 +113,17 @@ div{
 .title{
   color: #40464d;
   font-weight: 700;
-  letter-spacing: 7.8px;
+  letter-spacing: $letter_spacing;
   font-size: 50px;
-  margin: 20px 10px;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
 .timer{
   width: 135px;
   height: 135px;
-  padding-top: 40px;
+  padding-top: 35px;
   margin: 0 auto;
   color: #fff;
   background-color: $blue;
@@ -151,14 +154,35 @@ div{
   color: #fff;
   font-size: 20px;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: $letter_spacing;
   text-align: center;
+  cursor: pointer;
 }
 .controls_btn_green{
   background-color: $green;
 }
 .controls_btn_blue{
   background-color: $blue;
+}
+
+.stats_title{
+  font-size: 20px;
+  font-weight: 700;
+  color: #6f767f;
+  text-align: center;
+}
+.stats_result{
+  font-size: 90px;
+  font-weight: 600;
+  color: $blue;
+  text-align: center;
+}
+.stats_unit{
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: $letter_spacing;
+  text-align: center;
+  color: $blue;
 }
 
 .cards{

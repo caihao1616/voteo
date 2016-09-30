@@ -43688,7 +43688,25 @@
 	  (0, _createClass3.default)(Stats, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement('div', { className: 'stats' });
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'stats' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'stats_title' },
+	          'POPULAR RESULTS:'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'stats_result' },
+	          '2'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'stats_unit' },
+	          'STORY POINTS'
+	        )
+	      );
 	    }
 	  }]);
 	  return Stats;

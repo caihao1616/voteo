@@ -1,6 +1,6 @@
 body {
   padding: 50px;
-  font: 14px "Open Sans", Helvetica, Arial, sans-serif; }
+  font-family: "Open Sans"; }
 
 div {
   box-sizing: border-box; }
@@ -80,14 +80,16 @@ div {
 .title {
   color: #40464d;
   font-weight: 700;
-  letter-spacing: 7.8px;
+  letter-spacing: 3px;
   font-size: 50px;
-  margin: 20px 10px; }
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px; }
 
 .timer {
   width: 135px;
   height: 135px;
-  padding-top: 40px;
+  padding-top: 35px;
   margin: 0 auto;
   color: #fff;
   background-color: #0067ff;
@@ -118,13 +120,33 @@ div {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 3px;
-  text-align: center; }
+  text-align: center;
+  cursor: pointer; }
 
 .controls_btn_green {
   background-color: #33d872; }
 
 .controls_btn_blue {
   background-color: #0067ff; }
+
+.stats_title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #6f767f;
+  text-align: center; }
+
+.stats_result {
+  font-size: 90px;
+  font-weight: 600;
+  color: #0067ff;
+  text-align: center; }
+
+.stats_unit {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-align: center;
+  color: #0067ff; }
 
 .cards {
   position: relative;
