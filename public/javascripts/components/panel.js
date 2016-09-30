@@ -8,9 +8,9 @@ class Panel extends React.Component{
     return (
       <div className='panel'>
         <h1 className='title'>VOTEO</h1>
-        <Timer countdown={this.props.countdown}/>
-        <Controls started={this.props.started}/>
-        <Stats/>
+        <Timer countdown={this.props.countdown} />
+        <Controls started={this.props.started} />
+        <Stats users={this.props.users} all_voted={this.props.all_voted} />
       </div>
     )
   }

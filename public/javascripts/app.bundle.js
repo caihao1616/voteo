@@ -43161,7 +43161,7 @@
 	        'div',
 	        { className: 'board' },
 	        _react2.default.createElement(_dialog2.default, { message: this.state.dialog_message }),
-	        _react2.default.createElement(_panel2.default, { all_voted: all_voted, started: this.state.started, countdown: this.state.countdown }),
+	        _react2.default.createElement(_panel2.default, { all_voted: all_voted, started: this.state.started, countdown: this.state.countdown, users: this.state.users }),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'main_panel' },
@@ -43295,7 +43295,7 @@
 	            _react2.default.createElement(
 	              'button',
 	              { type: 'submit', className: 'dialog_btn' },
-	              'OK'
+	              'SUBMIT'
 	            )
 	          )
 	        )
@@ -43471,7 +43471,7 @@
 	        ),
 	        _react2.default.createElement(_timer2.default, { countdown: this.props.countdown }),
 	        _react2.default.createElement(_controls2.default, { started: this.props.started }),
-	        _react2.default.createElement(_stats2.default, null)
+	        _react2.default.createElement(_stats2.default, { users: this.props.users, all_voted: this.props.all_voted })
 	      );
 	    }
 	  }]);
@@ -43630,12 +43630,12 @@
 	        _react2.default.createElement(
 	          'button',
 	          { type: 'button', className: 'controls_btn controls_btn_green', onClick: this.handleRestart },
-	          this.props.started ? 'Restart' : 'Start'
+	          this.props.started ? 'RESTART' : 'START'
 	        ),
 	        _react2.default.createElement(
 	          'button',
 	          { type: 'button', className: 'controls_btn controls_btn_blue', onClick: this.handleQuitVote },
-	          'NO ACTION'
+	          'ABSTAIN'
 	        )
 	      );
 	    }
@@ -43688,23 +43688,46 @@
 	  (0, _createClass3.default)(Stats, [{
 	    key: 'render',
 	    value: function render() {
+	      var popular_point = 'N/A';
+	      var popular_point_times = 0;
+	      if (this.props.all_voted) {
+	        var point_stat = {};
+	        for (var user in this.props.users) {
+	          if (point_stat[this.props.users[user].point]) {
+	            point_stat[this.props.users[user].point] += 1;
+	          } else {
+	            point_stat[this.props.users[user].point] = 1;
+	          }
+	        }
+	        for (var point in point_stat) {
+	          if (point_stat[point] > popular_point_times) {
+	            popular_point = point;
+	            popular_point_times = point_stat[point];
+	          }
+	        }
+	      }
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'stats' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'stats_title' },
-	          'POPULAR RESULTS:'
+	          'MOST VOTED:'
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'stats_result' },
-	          '2'
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'stats_unit' },
-	          'STORY POINTS'
+	          { className: this.props.all_voted || 'hidden' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'stats_result' },
+	            popular_point
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'stats_unit' },
+	            'STORY POINTS'
+	          )
 	        )
 	      );
 	    }

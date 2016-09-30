@@ -36,7 +36,7 @@ class Board extends React.Component{
     return (
       <div className='board'>
         <Dialog message={this.state.dialog_message} />
-        <Panel all_voted={all_voted} started={this.state.started} countdown={this.state.countdown} />
+        <Panel all_voted={all_voted} started={this.state.started} countdown={this.state.countdown} users={this.state.users}/>
         <div className='main_panel'>
           <Users users={this.state.users} user_name={this.state.user_name} all_voted={all_voted} />
           <Cards voted={voted_point} started={this.state.started} />

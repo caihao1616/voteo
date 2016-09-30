@@ -31,7 +31,7 @@ class Dialog extends React.Component{
               ref={function(input){
                 if(input !== null){input.focus()}
               }} />
-            <button type="submit" className='dialog_btn'>OK</button>
+            <button type="submit" className='dialog_btn'>SUBMIT</button>
           </form>
         </div>
       </div>
