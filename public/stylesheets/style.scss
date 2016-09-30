@@ -2,8 +2,8 @@ $cards_number: 9;
 $distance_between_cards: 100% / $cards_number;
 $card_width: 100px;
 $card_height: 140px;
-$board_card_width: $card_width * 0.5;
-$board_card_height: $card_height * 0.5;
+$board_card_width: $card_width;
+$board_card_height: $card_height;
 $blue: #0067ff;
 $green: #33d872;
 $letter_spacing: 3px;
@@ -33,6 +33,11 @@ body {
 
 div{
   box-sizing: border-box;
+}
+
+.board {
+  @include clearfix;
+  background-color: #ebf5fe;
 }
 
 .dialog{
@@ -70,9 +75,10 @@ div{
 }
 
 .users{
-  margin-bottom: 100px;
   @include clearfix;
+  width: 100%;
 }
+
 .user{
   margin-right: 20px;
   margin-bottom: 20px;
@@ -85,31 +91,40 @@ div{
   align-items: center;
 
   font-size: 30px;
+  font-weight: 700;
 
   width: $board_card_width;
   height: $board_card_height;
   border: 1px dashed #6f767f;
   border-radius: 8px;
   &.back{
-    background: black;
+    background-image: url('assets/hedgehog.png');
+    background-color: #fff;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
   .is_me &{
+    color: $blue;
     background: none;
   }
 }
-.user_name{
+.user_name {
   text-align: center;
   text-transform: uppercase;
-  color: $blue;
+  font-size: 16px;
+  font-weight: 700;
   padding: 10px 0;
   @include ellipse;
+  .is_me &{
+    color: $blue;
+  }
 }
 
 .main_panel {
   width: 80%;
   float: left;
-  padding: 20px;
-  background-color: #ebf5fe;
+  padding: 50px;
 }
 
 .panel {
@@ -117,6 +132,7 @@ div{
   float: left;
   border-right: 1px solid #e3e3e5;
   padding: 0 20px;
+  background-color: #fff;
 }
 
 .panel_title {
@@ -199,7 +215,9 @@ div{
 }
 
 .cards{
-  position: relative;
+  position: fixed;
+  bottom: 50px;
+  height: 100px;
   max-width: 800px;
   min-width: 400px;
   margin-right: $card_width;
@@ -211,9 +229,9 @@ div{
   top: 0px;
   width: $card_width;
   height: $card_height;
-  text-align: left;
+  text-align: right;
   padding-top: 5px;
-  padding-left: 5px;
+  padding-right: 5px;
   float: left;
   border: 1px solid black;
   cursor: pointer;
@@ -222,7 +240,7 @@ div{
   @for $i from 0 through 8 {
     &:nth-child(#{$i+1}){
       left: $distance_between_cards * $i;
-      z-index: $i + 1;
+      z-index: 8 - $i;
     }
   }
   &:hover{
