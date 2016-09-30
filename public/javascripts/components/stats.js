@@ -15,7 +15,7 @@ class Stats extends React.Component{
         }
       }
       for(let point in point_stat){
-        if(point_stat[point] > popular_point_times){
+        if(point_stat[point] > popular_point_times && point != -1){
           popular_point = point;
           popular_point_times = point_stat[point];
         }

@@ -1,7 +1,7 @@
 $cards_number: 9;
 $distance_between_cards: 100% / $cards_number;
-$card_width: 100px;
-$card_height: 140px;
+$card_width: 160px;
+$card_height: 200px;
 $board_card_width: $card_width;
 $board_card_height: $card_height;
 $blue: #0067ff;
@@ -29,6 +29,9 @@ $letter_spacing: 3px;
 
 body {
   font: 14px "Open Sans", Helvetica, Arial, sans-serif;
+  background-color: #ebf5fe;
+  margin: 0;
+  padding: 0;
 }
 
 div{
@@ -37,7 +40,6 @@ div{
 
 .board {
   @include clearfix;
-  background-color: #ebf5fe;
 }
 
 .dialog{
@@ -76,14 +78,21 @@ div{
   width: 50%;
   margin-right: 10px;
   padding: 3px;
+  vertical-align: top;
 }
 .dialog_btn{
   background-color: $green;
-  font-size: 30px;
-  color: #fff;
   width: 30%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: $letter_spacing;
+  text-align: center;
   cursor: pointer;
-  padding: 3px;
+  padding: 10px;
+  border-radius: 5px;
+  vertical-align: top;
+  border: 1px solid $green;
 }
 
 .users{
@@ -107,28 +116,32 @@ div{
   width: 160px;
   height: 200px;
   // background-image: linear-gradient(to bottom, #333 10%, rgba(255, 255, 255, 0) 0%);
-  border-radius: 8px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 2px 2px 2px 2px rgba(0, 2, 4, 0.05);
+  color: #8087b0;
 
   &.not_voted {
     border: 1px dashed #6f767f;
+    box-shadow: none;
     background-image: url('assets/spokeo_logo.png');
-    background-color: #fff;
     background-position: center center;
-    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &.quitted {
+    background-image: url('assets/abstained.png');
+    background-position: center center;
     background-repeat: no-repeat;
   }
 
   &.back{
     background-image: url('assets/hedgehog.png');
-    background-color: #fff;
     background-position: center center;
     background-repeat: no-repeat;
   }
   .is_me &{
     color: $blue;
-    background: #fff;
-    border: 1px #e3e3e5;
-    box-shadow: 2px 2px 2px 2px rgba(0, 2, 4, 0.05);
   }
 }
 .user_name {
@@ -137,6 +150,7 @@ div{
   font-size: 16px;
   font-weight: 700;
   padding: 10px 0;
+  color: #8087b0;
   @include ellipse;
   .is_me &{
     color: $blue;
@@ -151,6 +165,7 @@ div{
 
 .panel {
   width: 20%;
+  height: 1000px;
   float: left;
   border-right: 1px solid #e3e3e5;
   padding: 0 20px;
@@ -245,10 +260,11 @@ div{
 
 .cards{
   position: fixed;
-  bottom: 50px;
-  height: 100px;
-  max-width: 800px;
-  min-width: 400px;
+  bottom: -70px;
+  right: 50px;
+  height: $card_height;
+  width: 80%;
+  max-width: 700px;
   margin-right: $card_width;
   @include clearfix;
 }
@@ -262,10 +278,16 @@ div{
   padding-top: 5px;
   padding-right: 5px;
   float: left;
-  border: 1px solid black;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 5px;
+  color: $blue;
+  font-size: 28px;
+  font-weight: 600;
   background-color: #fff;
+  background-image: url('assets/spokeo_logo.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  box-shadow: 2px 2px 2px 2px rgba(0, 2, 4, 0.05);
   @for $i from 0 through 8 {
     &:nth-child(#{$i+1}){
       left: $distance_between_cards * $i;

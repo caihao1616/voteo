@@ -43351,10 +43351,17 @@
 	    key: 'render',
 	    value: function render() {
 	      var card_classes = ['user_card'];
-	      if (this.props.point !== null) if (this.props.point === -1) card_classes.push('quitted');else if (this.props.all_voted || this.props.is_me) card_classes.push('is_me');else card_classes.push('back');
+	      if (this.props.point !== null) {
+	        if (this.props.point === -1) card_classes.push('quitted');else if (!this.props.is_me && !this.props.all_voted) card_classes.push('back');
+	      } else {
+	        card_classes.push('not_voted');
+	      }
 
 	      var user_classes = ['user'];
 	      if (this.props.is_me) user_classes.push('is_me');
+
+	      var point = null;
+	      if ((this.props.all_voted || this.props.is_me) && this.props.point !== -1) point = this.props.point;
 
 	      return _react2.default.createElement(
 	        'div',
@@ -43362,11 +43369,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: card_classes.join(' ') },
-	          this.props.is_me ? _react2.default.createElement(
-	            'div',
-	            null,
-	            this.props.point
-	          ) : null
+	          point
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -43620,7 +43623,7 @@
 	          }
 	        }
 	        for (var point in point_stat) {
-	          if (point_stat[point] > popular_point_times) {
+	          if (point_stat[point] > popular_point_times && point != -1) {
 	            popular_point = point;
 	            popular_point_times = point_stat[point];
 	          }
