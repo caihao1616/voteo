@@ -97,6 +97,15 @@ div{
   height: $board_card_height;
   border: 1px dashed #6f767f;
   border-radius: 8px;
+
+  &.not_voted {
+    background-image: url('assets/spokeo_logo.png');
+    background-color: #fff;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
   &.back{
     background-image: url('assets/hedgehog.png');
     background-color: #fff;
@@ -106,7 +115,6 @@ div{
   }
   .is_me &{
     color: $blue;
-    background: none;
   }
 }
 .user_name {

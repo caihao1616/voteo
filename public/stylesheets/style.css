@@ -66,6 +66,12 @@ div {
   height: 140px;
   border: 1px dashed #6f767f;
   border-radius: 8px; }
+  .user_card.not_voted {
+    background-image: url("assets/spokeo_logo.png");
+    background-color: #fff;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat; }
   .user_card.back {
     background-image: url("assets/hedgehog.png");
     background-color: #fff;
@@ -73,8 +79,7 @@ div {
     background-size: contain;
     background-repeat: no-repeat; }
   .is_me .user_card {
-    color: #0067ff;
-    background: none; }
+    color: #0067ff; }
 
 .user_name {
   text-align: center;
