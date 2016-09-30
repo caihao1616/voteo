@@ -43111,7 +43111,7 @@
 
 	var _panel2 = _interopRequireDefault(_panel);
 
-	var _cards = __webpack_require__(337);
+	var _cards = __webpack_require__(340);
 
 	var _cards2 = _interopRequireDefault(_cards);
 
@@ -43351,15 +43351,22 @@
 	    key: 'render',
 	    value: function render() {
 	      var card_classes = ['user_card'];
-	      if (this.props.point !== null) if (this.props.point === -1) card_classes.push('quitted');else if (this.props.all_voted || this.props.is_me) card_classes.push('p' + this.props.point);else card_classes.push('back');
+	      if (this.props.point !== null) if (this.props.point === -1) card_classes.push('quitted');else if (this.props.all_voted || this.props.is_me) card_classes.push('is_me');else card_classes.push('back');
+
+	      var user_classes = ['user'];
+	      if (this.props.is_me) user_classes.push('is_me');
 
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'user' },
+	        { className: user_classes.join(' ') },
 	        _react2.default.createElement(
 	          'div',
 	          { className: card_classes.join(' ') },
-	          this.props.point
+	          this.props.is_me ? _react2.default.createElement(
+	            'div',
+	            null,
+	            this.props.point
+	          ) : null
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -43436,15 +43443,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _controls = __webpack_require__(338);
+	var _controls = __webpack_require__(337);
 
 	var _controls2 = _interopRequireDefault(_controls);
 
-	var _stats = __webpack_require__(339);
+	var _stats = __webpack_require__(338);
 
 	var _stats2 = _interopRequireDefault(_stats);
 
-	var _timer = __webpack_require__(340);
+	var _timer = __webpack_require__(339);
 
 	var _timer2 = _interopRequireDefault(_timer);
 
@@ -43482,93 +43489,6 @@
 
 /***/ },
 /* 337 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _getPrototypeOf = __webpack_require__(174);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(200);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(201);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(205);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(252);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _board_actions = __webpack_require__(310);
-
-	var _board_actions2 = _interopRequireDefault(_board_actions);
-
-	var _constants = __webpack_require__(325);
-
-	var _constants2 = _interopRequireDefault(_constants);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Cards = function (_React$Component) {
-	  (0, _inherits3.default)(Cards, _React$Component);
-
-	  function Cards() {
-	    (0, _classCallCheck3.default)(this, Cards);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Cards).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(Cards, [{
-	    key: 'handleVote',
-	    value: function handleVote(point) {
-	      _board_actions2.default.vote(point);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-
-	      var cards = _constants2.default.POINTS.filter(function (point) {
-	        return point !== _this2.props.voted;
-	      }).map(function (point) {
-	        return _react2.default.createElement(
-	          'div',
-	          { key: point, className: 'card', onClick: function onClick() {
-	              return _this2.handleVote(point);
-	            } },
-	          point
-	        );
-	      });
-
-	      var card_classes = ['cards'];
-	      if (!this.props.started) {
-	        card_classes.push('hidden');
-	      }
-
-	      return _react2.default.createElement(
-	        'div',
-	        { className: card_classes.join(' ') },
-	        cards
-	      );
-	    }
-	  }]);
-	  return Cards;
-	}(_react2.default.Component);
-
-	module.exports = Cards;
-
-/***/ },
-/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43646,7 +43566,7 @@
 	module.exports = Controls;
 
 /***/ },
-/* 339 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43738,7 +43658,7 @@
 	module.exports = Stats;
 
 /***/ },
-/* 340 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43797,6 +43717,93 @@
 	}(_react2.default.Component);
 
 	module.exports = Timer;
+
+/***/ },
+/* 340 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _getPrototypeOf = __webpack_require__(174);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(200);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(201);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(205);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(252);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _board_actions = __webpack_require__(310);
+
+	var _board_actions2 = _interopRequireDefault(_board_actions);
+
+	var _constants = __webpack_require__(325);
+
+	var _constants2 = _interopRequireDefault(_constants);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Cards = function (_React$Component) {
+	  (0, _inherits3.default)(Cards, _React$Component);
+
+	  function Cards() {
+	    (0, _classCallCheck3.default)(this, Cards);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Cards).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Cards, [{
+	    key: 'handleVote',
+	    value: function handleVote(point) {
+	      _board_actions2.default.vote(point);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var cards = _constants2.default.POINTS.filter(function (point) {
+	        return point !== _this2.props.voted;
+	      }).map(function (point) {
+	        return _react2.default.createElement(
+	          'div',
+	          { key: point, className: 'card', onClick: function onClick() {
+	              return _this2.handleVote(point);
+	            } },
+	          point
+	        );
+	      });
+
+	      var card_classes = ['cards'];
+	      if (!this.props.started) {
+	        card_classes.push('hidden');
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: card_classes.join(' ') },
+	        cards
+	      );
+	    }
+	  }]);
+	  return Cards;
+	}(_react2.default.Component);
+
+	module.exports = Cards;
 
 /***/ }
 /******/ ]);

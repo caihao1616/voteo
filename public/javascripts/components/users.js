@@ -7,13 +7,19 @@ class User extends React.Component{
       if(this.props.point === -1)
         card_classes.push('quitted');
       else if(this.props.all_voted || this.props.is_me)
-        card_classes.push('p' + this.props.point);
+        card_classes.push('is_me');
       else
         card_classes.push('back');
 
+    let user_classes = ['user']
+    if(this.props.is_me)
+      user_classes.push('is_me');
+
     return (
-      <div className='user'>
-        <div className={card_classes.join(' ')}>{this.props.point}</div>
+      <div className={user_classes.join(' ')}>
+        <div className={card_classes.join(' ')}>
+          { this.props.is_me ? <div>{this.props.point}</div> : null }
+        </div>
         <div className='user_name'>{this.props.name}</div>
       </div>
     );

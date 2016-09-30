@@ -1,8 +1,15 @@
 body {
-  font-family: 'Open Sans', sans-serif; }
+  font: 14px "Open Sans", Helvetica, Arial, sans-serif; }
 
 div {
   box-sizing: border-box; }
+
+.board {
+  background-color: #ebf5fe; }
+  .board:after {
+    content: "";
+    display: table;
+    clear: both; }
 
 .dialog {
   position: fixed;
@@ -49,7 +56,7 @@ div {
   padding: 3px; }
 
 .users {
-  margin-bottom: 100px; }
+  width: 100%; }
   .users:after {
     content: "";
     display: table;
@@ -59,34 +66,59 @@ div {
   margin-right: 20px;
   margin-bottom: 20px;
   float: left;
-  max-width: 50px; }
+  max-width: 100px; }
 
 .user_card {
-  width: 50px;
-  height: 70px;
-  border: 1px solid black; }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 700;
+  width: 100px;
+  height: 140px;
+  border: 1px dashed #6f767f;
+  border-radius: 8px; }
+  .user_card.not_voted {
+    background-image: url("assets/spokeo_logo.png");
+    background-color: #fff;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat; }
   .user_card.back {
-    background: black; }
+    background-image: url("assets/hedgehog.png");
+    background-color: #fff;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat; }
   .is_me .user_card {
-    background: none; }
+    color: #0067ff; }
 
 .user_name {
   text-align: center;
-  padding: 5px 0;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }
+  .is_me .user_name {
+    color: #0067ff; }
 
 .main_panel {
   width: 80%;
   float: left;
-  padding: 0 20px; }
+  padding: 50px; }
 
 .panel {
   width: 20%;
   float: left;
   border-right: 1px solid #e3e3e5;
-  padding: 0 50px; }
+  padding: 0 20px;
+  background-color: #fff; }
+
+.panel_title {
+  font-size: 30px; }
 
 .title {
   color: #40464d;
@@ -167,7 +199,9 @@ div {
   color: #0067ff; }
 
 .cards {
-  position: relative;
+  position: fixed;
+  bottom: 50px;
+  height: 100px;
   max-width: 800px;
   min-width: 400px;
   margin-right: 100px; }
@@ -181,11 +215,13 @@ div {
   top: 0px;
   width: 100px;
   height: 140px;
-  text-align: left;
-  padding: 5px;
+  text-align: right;
+  padding-top: 5px;
+  padding-right: 5px;
   float: left;
   border: 1px solid black;
   cursor: pointer;
+  border-radius: 8px;
   background-color: #fff;
   -moz-transition: top 0.2s ease, left 0.5s ease;
   -o-transition: top 0.2s ease, left 0.5s ease;
@@ -193,31 +229,31 @@ div {
   transition: top 0.2s ease, left 0.5s ease; }
   .card:nth-child(1) {
     left: 0%;
-    z-index: 1; }
+    z-index: 8; }
   .card:nth-child(2) {
     left: 11.11111%;
-    z-index: 2; }
+    z-index: 7; }
   .card:nth-child(3) {
     left: 22.22222%;
-    z-index: 3; }
+    z-index: 6; }
   .card:nth-child(4) {
     left: 33.33333%;
-    z-index: 4; }
+    z-index: 5; }
   .card:nth-child(5) {
     left: 44.44444%;
-    z-index: 5; }
+    z-index: 4; }
   .card:nth-child(6) {
     left: 55.55556%;
-    z-index: 6; }
+    z-index: 3; }
   .card:nth-child(7) {
     left: 66.66667%;
-    z-index: 7; }
+    z-index: 2; }
   .card:nth-child(8) {
     left: 77.77778%;
-    z-index: 8; }
+    z-index: 1; }
   .card:nth-child(9) {
     left: 88.88889%;
-    z-index: 9; }
+    z-index: 0; }
   .card:hover {
     top: -20px; }
 

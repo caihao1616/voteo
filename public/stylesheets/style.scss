@@ -2,8 +2,8 @@ $cards_number: 9;
 $distance_between_cards: 100% / $cards_number;
 $card_width: 100px;
 $card_height: 140px;
-$board_card_width: $card_width * 0.5;
-$board_card_height: $card_height * 0.5;
+$board_card_width: $card_width;
+$board_card_height: $card_height;
 $blue: #0067ff;
 $green: #33d872;
 $letter_spacing: 3px;
@@ -28,11 +28,16 @@ $letter_spacing: 3px;
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font: 14px "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 div{
   box-sizing: border-box;
+}
+
+.board {
+  @include clearfix;
+  background-color: #ebf5fe;
 }
 
 .dialog{
@@ -82,43 +87,76 @@ div{
 }
 
 .users{
-  margin-bottom: 100px;
   @include clearfix;
+  width: 100%;
 }
+
 .user{
   margin-right: 20px;
   margin-bottom: 20px;
   float: left;
   max-width: $board_card_width;
 }
-.user_card{
+.user_card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 30px;
+  font-weight: 700;
+
   width: $board_card_width;
   height: $board_card_height;
-  border: 1px solid black;
+  border: 1px dashed #6f767f;
+  border-radius: 8px;
+
+  &.not_voted {
+    background-image: url('assets/spokeo_logo.png');
+    background-color: #fff;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
   &.back{
-    background: black;
+    background-image: url('assets/hedgehog.png');
+    background-color: #fff;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
   .is_me &{
-    background: none;
+    color: $blue;
   }
 }
-.user_name{
+.user_name {
   text-align: center;
-  padding: 5px 0;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px 0;
   @include ellipse;
+  .is_me &{
+    color: $blue;
+  }
 }
 
 .main_panel {
   width: 80%;
   float: left;
-  padding: 0 20px;
+  padding: 50px;
 }
 
 .panel {
   width: 20%;
   float: left;
   border-right: 1px solid #e3e3e5;
-  padding: 0 50px;
+  padding: 0 20px;
+  background-color: #fff;
+}
+
+.panel_title {
+  font-size: 30px;
 }
 
 .title{
@@ -204,27 +242,32 @@ div{
 }
 
 .cards{
-  position: relative;
+  position: fixed;
+  bottom: 50px;
+  height: 100px;
   max-width: 800px;
   min-width: 400px;
   margin-right: $card_width;
   @include clearfix;
 }
+
 .card{
   position: absolute;
   top: 0px;
   width: $card_width;
   height: $card_height;
-  text-align: left;
-  padding: 5px;
+  text-align: right;
+  padding-top: 5px;
+  padding-right: 5px;
   float: left;
   border: 1px solid black;
   cursor: pointer;
+  border-radius: 8px;
   background-color: #fff;
   @for $i from 0 through 8 {
     &:nth-child(#{$i+1}){
       left: $distance_between_cards * $i;
-      z-index: $i + 1;
+      z-index: 8 - $i;
     }
   }
   &:hover{
