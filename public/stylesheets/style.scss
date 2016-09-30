@@ -95,7 +95,6 @@ div{
   margin-right: 20px;
   margin-bottom: 20px;
   float: left;
-  max-width: $board_card_width;
 }
 .user_card {
   display: flex;
@@ -105,12 +104,13 @@ div{
   font-size: 30px;
   font-weight: 700;
 
-  width: $board_card_width;
-  height: $board_card_height;
-  border: 1px dashed #6f767f;
+  width: 160px;
+  height: 200px;
+  // background-image: linear-gradient(to bottom, #333 10%, rgba(255, 255, 255, 0) 0%);
   border-radius: 8px;
 
   &.not_voted {
+    border: 1px dashed #6f767f;
     background-image: url('assets/spokeo_logo.png');
     background-color: #fff;
     background-position: center center;
@@ -122,11 +122,13 @@ div{
     background-image: url('assets/hedgehog.png');
     background-color: #fff;
     background-position: center center;
-    background-size: contain;
     background-repeat: no-repeat;
   }
   .is_me &{
     color: $blue;
+    background: #fff;
+    border: 1px #e3e3e5;
+    box-shadow: 2px 2px 2px 2px rgba(0, 2, 4, 0.05);
   }
 }
 .user_name {
